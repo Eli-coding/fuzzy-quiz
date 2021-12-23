@@ -24,34 +24,34 @@ function displayQuestion(qIndex) {
 
 var questions = [
     {
-        // questionNumber: "1",
-        questionWording: "1. What is a dog?",
-        choices: ["carrot", "sky", "pizza"], //buttons
-        answer: ["sky"]
+        
+        questionWording: "1. Commonly use data types DO NOT include",
+        choices: ["string", "booleans", "numbers"], //buttons
+        answer: ["booleans"]
     },
     {
-        //questionNumber: "2",
-        questionWording: "2. What is a plaza?",
-        choices: ["rice", "tile", "cheese"],
-        answer: ["pizza"]
+        
+        questionWording: "2. Arrays in Javascript can be used to store?",
+        choices: ["numbers", "strings", "All of the above"],
+        answer: ["All of the above"]
     },
     {
-        //questionNumber: "3",
-        questionWording: "3. What is a bear?",
-        choices: ["carrot", "sky", "pizza"],
-        answer: ["sky"]
+        
+        questionWording: "3. Inside which HTML element do we put javascript?",
+        choices: ["<js>", "<h2>", "<script>"],
+        answer: ["<script>"]
     },
     {
-        //questionNumber: "4",
-        questionWording: "4. What is a cat?",
-        choices: ["carrot", "sky", "pizza"],
-        answer: ["pizza"]
+        
+        questionWording: "4. Where is the correct place to insert a JavaScript?",
+        choices: ["<head>", "<body>", "both are correct"],
+        answer: ["both are correct"]
     },
     {
-        //questionNumber: "5",
-        questionWording: "5. What is a waffle?",
-        choices: ["carrot", "sky", "pizza"],
-        answer: ["sky"]
+        
+        questionWording: "5. How do you create a function in JavaScript?",
+        choices: ["function myFunction()", "function: myFunction()", "function = myFunction()"],
+        answer: ["function myFunction()"]
     },
 
 ]
