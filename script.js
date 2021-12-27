@@ -39,10 +39,17 @@ const questions = [
 
 var quizQuestion = document.getElementById('quizQuestion');
 var selection = document.getElementById('selection');
-var correctAnswer = document.getElementById('corectAnswer');
+var correctAnswer = document.getElementById('correctAnswer');
 
-document.getElementById("startButton").addEventListener("click", displayQuestion);
+document.getElementById("startButton").addEventListener("click", startGame);
 var qIndex = 0;
+var timeLeft = 90;
+var timerInterval = null;
+
+function startGame() {
+    Timer();
+    displayQuestion();
+}
 
 // displays questions 
 function displayQuestion() {
@@ -53,12 +60,14 @@ function displayQuestion() {
 
     for (var i = 0; i < (questions[qIndex].choices.length); i++) {
         var button = document.createElement('button');
-        button.setAttribute('class', 'optionSelected')
+        var output = questions[qIndex].choices[i];
+        button.setAttribute('class', 'optionSelected');
         button.textContent = questions[qIndex].choices[i];
-        button.setAttribute("id", questions[qIndex].choices[i]);
-        console.log(questions[qIndex].choices);
+        button.setAttribute("value", questions[qIndex].choices[i]);
 
-        button.onclick = checkAnswers(questions[qIndex].choices[i]);
+
+        //button.onclick = function(){checkAnswers(questions[qIndex].choices[i])};
+        button.addEventListener("click", function (event) { checkAnswers(event.target.value) });
         selection.append(button);
 
     }
@@ -68,7 +77,31 @@ function displayQuestion() {
 }
 
 //checks questions and substracts timer if needed
-function checkAnswers() {
+function checkAnswers(selectedChoice) {
+    console.log(selectedChoice);
+    if (selectedChoice === questions[qIndex].answer) {
+
+        correctAnswer.innerHTML = "Correct!";
+
+    } else {
+
+        correctAnswer.innerHTML = "Wrong!";
+        timeLeft = timeLeft - 8;
+        //subtract time from timer
+    }
+
+
+    qIndex++
+    quizQuestion.innerHTML = "";
+    selection.innerHTML = "";
+    correctAnswer.innerHTML = "";
+
+
+    if (qIndex < questions.length) {
+        displayQuestion();
+    } else {
+        endGame();
+    }
 
 
 }
@@ -78,45 +111,57 @@ function checkAnswers() {
 
 function Timer() {
 
-    var timeLeft = 90
+
     // Selects element by class
     var timeEl = document.querySelector(".time");
 
-    // Selects element by id
-    var mainEl = document.getElementById("main")
 
+    timerInterval = setInterval(function () {
 
-    function setTime() {
-        var timerInterval = setInterval(function () {
+        timeLeft--;
 
-            timeLeft--;
+        timeEl.textContent = timeLeft;
 
-            timeEl.textContent = timeLeft;
+        if (timeLeft === 0) {
 
-            if (timeLeft === 0) {
+            clearInterval(timerInterval);
 
-                clearInterval(timerInterval);
+            endGame();
+        }
 
-                document.write("Game Over.")
+    }, 1000);
 
-                Highscores();
-            }
-
-        }, 20000);
-    }
 
 
 }
+
+function endGame() {
+
+    clearInterval(timerInterval);
+    document.querySelector(".time").innerHTML = "";
+    //TODO: Ask user to enter its Initials. 
+    //TODO: calculate points and save to local storage.
+    localStorage.setItem("score", score); //store in local storage
+    localStorage.setItem("initial", initials);
+
+   //TODO: Move to high score page initials and storage
+    
+}
+
 
 // Highscores takes intitials and score
 function Highscores() {
 
+    //TODO: Display Initials and Highscore from last user who played.
+
+    var score = document.createElement('h1');
+    h1.textContent = "";
+    score.append(h1);
+
     var score = localStorage.getItem("score"); // get it from storage
     var initials = localStorage.getItem("initial");
-
-    localStorage.setItem("score", score); //store in local storage
-    localStorage.setItem("initial", initials);
 }
+
 
 
 
