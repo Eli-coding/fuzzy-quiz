@@ -1,9 +1,9 @@
 const questions = [
     {
 
-        questionWording: "1. Commonly use data types DO NOT include",
-        choices: ["string", "booleans", "numbers"], 
-                         
+        questionWording: "1. Commonly use data types DO NOT include...",
+        choices: ["string", "booleans", "numbers"],
+
         answer: "booleans"
     },
     {
@@ -35,75 +35,87 @@ const questions = [
         answer: "function myFunction()"
     },
 
-] 
+]
 
-var quizContainer = document.getElementById('quizContainer');
-var resultsContainer = document.getElementById('output');
+var quizQuestion = document.getElementById('quizQuestion');
+var selection = document.getElementById('selection');
+var correctAnswer = document.getElementById('corectAnswer');
 
 document.getElementById("startButton").addEventListener("click", displayQuestion);
-var questionTracker = 0;
+var qIndex = 0;
 
 // displays questions 
 function displayQuestion() {
 
-    console.log("hi from displayquestions");
+    var h1 = document.createElement('h1');
+    h1.textContent = questions[qIndex].questionWording;
+    quizQuestion.append(h1);
 
-    var theQuestion = document.getElementById("quizContainer"); 
-    console.log(theQuestion);
+    for (var i = 0; i < (questions[qIndex].choices.length); i++) {
+        var button = document.createElement('button');
+        button.setAttribute('class', 'optionSelected')
+        button.textContent = questions[qIndex].choices[i];
+        button.setAttribute("id", questions[qIndex].choices[i]);
+        console.log(questions[qIndex].choices);
 
-    theQuestion.innerHTML = "Hello World";
+        button.onclick = checkAnswers(questions[qIndex].choices[i]);
+        selection.append(button);
+
+    }
+
+
+
 }
 
 //checks questions and substracts timer if needed
 function checkAnswers() {
-    
-  
+
+
 }
 
 
 //timer 
 
-function Timer()
-{
+function Timer() {
 
     var timeLeft = 90
-// Selects element by class
-var timeEl = document.querySelector(".time");
+    // Selects element by class
+    var timeEl = document.querySelector(".time");
 
-// Selects element by id
-var mainEl = document.getElementById("main")
+    // Selects element by id
+    var mainEl = document.getElementById("main")
 
 
-function setTime() {
-    var timerInterval = setInterval(function () {
+    function setTime() {
+        var timerInterval = setInterval(function () {
 
-        timeLeft--;
+            timeLeft--;
 
-        timeEl.textContent = timeLeft;
+            timeEl.textContent = timeLeft;
 
-        if (timeLeft === 0) {
+            if (timeLeft === 0) {
 
-            clearInterval(timerInterval);
+                clearInterval(timerInterval);
 
-            document.write("Game Over.")
+                document.write("Game Over.")
 
-            Highscores();
-        }
+                Highscores();
+            }
 
-    }, 20000);
-}
+        }, 20000);
+    }
 
 
 }
 
 // Highscores takes intitials and score
 function Highscores() {
-    
-    var score = localStorage.getItem ("score"); // get it from storage
-    var initials = localStorage.getItem ("initial"); 
 
-    localStorage.setItem ("score", score ); //store in local storage
-    localStorage.setItem ("initial", initials ); 
+    var score = localStorage.getItem("score"); // get it from storage
+    var initials = localStorage.getItem("initial");
+
+    localStorage.setItem("score", score); //store in local storage
+    localStorage.setItem("initial", initials);
 }
 
 

@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <link rel="stylesheet" href="style.css"> 
-    
+
+    <link rel="stylesheet" href="style.css">
+
     <title>Coding Quiz Challenge</title>
 
 
 </head>
+
 <body>
-   
-    <p> <a href = scores.html> View High Scores</a></p> <!--links to highscores.-->
+
+    <p> <a href=scores.html> View High Scores</a></p>
+    <!--links to highscores.-->
 
     <h1>Coding Quiz Challenge</h1>
     <p>Answer the questions as quickly as possible. You got this!</p>
     <button id="startButton" type="startButton">Hit Start!</button>
 
-    <div id="quizContainer"></div>
-    <div id="output"></div>
+    <div id="quizQuestion"></div>
+    <!--questions-->
+    <div id="selection"></div>
+    <!--choices or possible answers-->
+   <!-- <button id="selection1" type="button" name="selection1" value="selection1">option1</button>
+    <button id="selection2" type="button" name="selection2" value="selection2">option2</button>
+    <button id="selection3" type="button" name="selection3" value="selection3">option3</button>
+    <div id="correctAnswer"></div> -->
+    <!--answer to the questions-->
 
 
-    <script src= "script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
